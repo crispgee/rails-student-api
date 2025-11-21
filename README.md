@@ -2,7 +2,7 @@
 STUDENT MANAGEMENT API 
 
 * System dependencies
-  Download Ubuntu on WSL to install Rails on Ruby
+  Download Ubuntu on WSL to install Ruby and setup rails environment
 
 * Configuration
   Clone the repository
@@ -11,6 +11,8 @@ STUDENT MANAGEMENT API
 * Database creation
   Generate your models on terminal
   rails g model Student firstname:string lastname:string age:integer date_of_birth:date
+  
+*Create and Run Database Migrations
   rails db:create
   rails db:migrate
 
