@@ -20,14 +20,14 @@ class StudentsController < ApplicationController
     if @student.update(student_params)
       render json: @student, status: :ok
     else 
-      render json: @student.error, status: :not_found
+      render json: @student.error, status: :no_content
     end 
   end 
   def destroy
     if @student.destroy
       render json: {message: "User deleted successfully"}, status: :ok
     else 
-      render status: :not_found
+      render status: :no_content
     end 
   end
   private
