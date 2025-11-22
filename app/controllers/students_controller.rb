@@ -13,21 +13,19 @@ class StudentsController < ApplicationController
     if student.save
       render json: student, status: :created 
     else 
-      render json: student.errors, staus: :unprocessable_entity
+      render json: {errors : student.errors.full_messages}, status: :unprocessable_entity
     end
   end
   def update 
     if @student.update(student_params)
       render json: @student, status: :ok
     else 
-      render json: @student.error, status: :no_content
+      render json: {errors: @student.errors.full_messages}, status: :unprocessable_entity
     end 
   end 
   def destroy
-    if @student.destroy
-      render json: {message: "User deleted successfully"}, status: :ok
-    else 
-      render status: :no_content
+    @student.destroy
+    head :no_content
     end 
   end
   private
@@ -36,5 +34,8 @@ class StudentsController < ApplicationController
   end
   def student_params
     params.require(:student).permit(:firstname,:lastname,:age,:date_of_birth)
+  end
+  def record_not_found
+    render json: {error: "Student not found"} status: :not_found
   end
 end
